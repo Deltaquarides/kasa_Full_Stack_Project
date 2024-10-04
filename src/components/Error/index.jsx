@@ -25,6 +25,10 @@ const ErrorLink = styled(Link)`
   color: #ff7261;
   text-decoration: underline 2px;
   pointer: cursor;
+    &:hover {
+    color: #d0d0d0;
+  }
+
 `;
 
 export const Error = () => {
