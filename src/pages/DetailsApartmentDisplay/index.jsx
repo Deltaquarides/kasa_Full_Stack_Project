@@ -1,4 +1,5 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import listApartment from "../../utils/listApartment.json";
 import { SlideShow } from "../../components/SlideShow";
@@ -98,10 +99,22 @@ const CollapseSection = styled.section`
 //pour ciblé l'appartement lors du clique de l'utilisateur.
 export const DetailsApartmentDisplay = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const [selectData, setSelectData] = useState(null);
 
-  const specificApartment = listApartment.find((accomodation) => {
-    return accomodation.id === id;
-  });
+  useEffect(() => {
+    const specificApartment = listApartment.find((accomodation) => {
+      return accomodation.id === id;
+    });
+
+    !specificApartment ? navigate("*") : setSelectData(specificApartment);
+  }, [id, navigate]);
+
+  // Les données ne seront pas disponibles au premier render, On gère donc le cas en renvoyant null
+  // sinon message d'erreur: cannot read property of undefined.
+  /*if (!selectData) {
+    return null;
+  }*/
 
   const gauges = [1, 2, 3, 4, 5];
 
@@ -109,59 +122,60 @@ export const DetailsApartmentDisplay = () => {
     //Erreur: cannot read property of undefined.
     //Solution: on doit vérifier si selectData est définit avant d'accéder à ses propriétés. On utilise donc un opérateur
     //conditionnel pour render les éléments; titre, nom ... uniquement si selectData est définit.
-
-    <>
-      <SlideShowSection>
-        <SlideShow specificApartment={specificApartment} id={id} />
-      </SlideShowSection>
-      <DetailsApartmentSection>
-        <div>
+    selectData && (
+      <>
+        <SlideShowSection>
+          <SlideShow specificApartment={selectData} id={id} />
+        </SlideShowSection>
+        <DetailsApartmentSection>
           <div>
-            <h1 style={{ color: "rgb(255, 114, 97)", margin: "0px " }}>
-              {specificApartment.title}
-            </h1>
-            <p style={{ color: "rgb(255, 114, 97)" }}>
-              {specificApartment.location}
-            </p>
+            <div>
+              <h1 style={{ color: "rgb(255, 114, 97)", margin: "0px " }}>
+                {selectData.title}
+              </h1>
+              <p style={{ color: "rgb(255, 114, 97)" }}>
+                {selectData.location}
+              </p>
+            </div>
+
+            <TagsWrapper>
+              <Tags content={selectData.tags} />
+            </TagsWrapper>
           </div>
+          <CardRatingContainer>
+            <RatingWrapper>
+              {gauges.map((gauge) =>
+                gauge >= selectData.rating ? (
+                  <span>{<StyledFontAwesomeIcon icon={faStar} />}</span>
+                ) : (
+                  <span>
+                    {" "}
+                    {<StyledFontAwesomeIcon $emptyStars icon={faStar} />}
+                  </span>
+                )
+              )}
+            </RatingWrapper>
+            <CardContainer>
+              <Cards
+                name={selectData.host.name}
+                pic={selectData.host.picture}
+              />
+            </CardContainer>
+          </CardRatingContainer>
+        </DetailsApartmentSection>
 
-          <TagsWrapper>
-            <Tags content={specificApartment.tags} />
-          </TagsWrapper>
-        </div>
-        <CardRatingContainer>
-          <RatingWrapper>
-            {gauges.map((gauge) =>
-              gauge >= specificApartment.rating ? (
-                <span>{<StyledFontAwesomeIcon icon={faStar} />}</span>
-              ) : (
-                <span>
-                  {" "}
-                  {<StyledFontAwesomeIcon $emptyStars icon={faStar} />}
-                </span>
-              )
-            )}
-          </RatingWrapper>
-          <CardContainer>
-            <Cards
-              name={specificApartment.host.name}
-              pic={specificApartment.host.picture}
-            />
-          </CardContainer>
-        </CardRatingContainer>
-      </DetailsApartmentSection>
-
-      <CollapseSection>
-        <Collapse title="Description" content={specificApartment.description} />
-        <Collapse
-          title="Equipements"
-          content={specificApartment.equipments.map((spec, index) => (
-            <ul key={index} style={{ listStyle: "none" }}>
-              <li>{spec} </li>
-            </ul>
-          ))}
-        />
-      </CollapseSection>
-    </>
+        <CollapseSection>
+          <Collapse title="Description" content={selectData.description} />
+          <Collapse
+            title="Equipements"
+            content={selectData.equipments.map((spec, index) => (
+              <ul key={index} style={{ listStyle: "none" }}>
+                <li>{spec} </li>
+              </ul>
+            ))}
+          />
+        </CollapseSection>
+      </>
+    )
   );
 };
