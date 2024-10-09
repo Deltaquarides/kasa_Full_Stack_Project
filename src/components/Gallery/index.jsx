@@ -83,14 +83,12 @@ export const Gallery = () => {
         {listApartment.map((apartment, index) => {
           const { id, cover, title } = apartment;
           return (
-            <>
-              <LinkStyle to={`/logement/${id}`}>
-                <GalleryArticle key={`${id}-${index}`}>
-                  <GalleryImg src={cover} alt="apartment_cover" />
-                  <ArticleTitle>{title}</ArticleTitle>
-                </GalleryArticle>
-              </LinkStyle>
-            </>
+            <LinkStyle key={`${id}-${index}`} to={`/logement/${id}`}>
+              <GalleryArticle>
+                <GalleryImg src={cover} alt="apartment_cover" />
+                <ArticleTitle>{title}</ArticleTitle>
+              </GalleryArticle>
+            </LinkStyle>
           );
         })}
       </GalleryContainer>

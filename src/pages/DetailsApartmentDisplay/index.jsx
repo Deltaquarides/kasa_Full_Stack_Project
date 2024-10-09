@@ -144,11 +144,13 @@ export const DetailsApartmentDisplay = () => {
           </div>
           <CardRatingContainer>
             <RatingWrapper>
-              {gauges.map((gauge) =>
+              {gauges.map((gauge, index) =>
                 gauge >= selectData.rating ? (
-                  <span>{<StyledFontAwesomeIcon icon={faStar} />}</span>
+                  <span key={index}>
+                    {<StyledFontAwesomeIcon icon={faStar} />}
+                  </span>
                 ) : (
-                  <span>
+                  <span key={index}>
                     {" "}
                     {<StyledFontAwesomeIcon $emptyStars icon={faStar} />}
                   </span>
