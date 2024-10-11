@@ -38,7 +38,7 @@ const BulletPoint = styled.span`
   right: 0;
   text-align: center;
   visibility: visible;
-  @media screen and (width <= 320px) {
+  @media screen and (width <= 768px) {
     visibility: hidden;
   }
 `;
