@@ -54,7 +54,7 @@ const ArticleTitle = styled.span`
   width: 70%;
   height: 30px;
   padding-top: 0px;
-    text-shadow: 4px 3px 3px #170a06;
+  text-shadow: 4px 3px 3px #170a06;
 
   @media screen and (max-width: 480px) {
     bottom: 10%;
