@@ -1,4 +1,5 @@
 import React from "react";
+import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import { Header } from "./components/Header/index";
