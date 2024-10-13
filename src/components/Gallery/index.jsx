@@ -8,14 +8,14 @@ const GallerySection = styled.section`
   padding-bottom: 3rem;
   border-radius: 25px;
 
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 577px) {
     ::after {
       content: "";
       flex-basis: 30%;
     }
   }
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 576px) {
     background-color: white;
   }
 `;
@@ -31,10 +31,9 @@ const GalleryArticle = styled.article`
   width: 100%;
   height: 100%;
   position: relative;
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 576px) {
     height: 169px;
     width: 100%;
-    max-width: 398px;
     object-position: center;
   }
 `;
@@ -56,7 +55,7 @@ const ArticleTitle = styled.span`
   padding-top: 0px;
   text-shadow: 4px 3px 3px #170a06;
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 576px) {
     bottom: 10%;
     width: 60%;
   }
@@ -71,7 +70,7 @@ const LinkStyle = styled(Link)`
     min-height: 150px;
   }
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 576px) {
     display: flex;
     width: 100%;
   }
