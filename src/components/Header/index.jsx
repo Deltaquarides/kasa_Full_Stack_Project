@@ -33,8 +33,9 @@ const StyledLink = styled(NavLink)`
   font-size: 30px;
   font-weight: 400;
   color:rgb(255, 114, 97);
-  @media screen and (max-width: 480px) {
-    font-size: 5vw;
+  @media screen and (max-width: 576px) {
+    font-size: 4vw;
+    text-transform: uppercase;
 
   }
   &:hover {
