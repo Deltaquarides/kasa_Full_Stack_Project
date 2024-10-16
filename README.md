@@ -1,5 +1,5 @@
 
-# Project 7 Kasa create a web application with React.![React](.\src\assets\images\logo\React_logo.png)
+# ![React](src\assets\images\logo\React_logo.png) Project 7 Kasa create a web application with React.
 
 ## Introduction
 
