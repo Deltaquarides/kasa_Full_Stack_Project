@@ -6,11 +6,11 @@
  __Aim of the project:__ Create an SPA (Single Page Application) of a rental apartment web application named Kasa.
 Provided to us a [figma's model](https://www.figma.com/file/bAnXDNqRKCRRP8mY2gcb5p/UI-Design-Kasa-FR?node-id=3%3A0) and contraints to follow.
 
-As we can see in the Figma model we have 4 pages: :thinking:
+As we can see in the Figma model we have 4 pages: 
 * Home
 * Appartement
 * About
-* Error: could be in the layout as a component with Banner component.
+* Error: could be in the layout as a component with Banner component. :thinking:
 
  |**Lists of Constraints**|
  | :--------|
@@ -38,6 +38,31 @@ As we can see in the Figma model we have 4 pages: :thinking:
 
 > [!WARNING]
 > Create React App is Deprecated use Vite instead.
+
+ ## Deployment :mechanical_arm:
+
+
+[1] Clone or download this repo.
+```bash
+  git clone "https://github.com/Deltaquarides/Kasa.git"
+```
+
+[2] To install this project.
+```bash
+  npm install
+```
+
+[3] To start this project run
+
+```bash
+  npm start
+```
+[4] **Styling**, if you want to use styled-components install
+```bash
+  install styled-components
+```
+
+You are good to go! :man_technologist:
 
 
 
