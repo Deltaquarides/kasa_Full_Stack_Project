@@ -1,12 +1,16 @@
 
-# ![alt text](React_logo.png) Project 7 Kasa create a web application with React.
+# <img src="src/assets/images/logo/React_logo.png" width="50" height="50" /> Project 7 Kasa create a web application with React.
 
-
-
-## Introduction
+## Introduction :monocle_face:
 
  __Aim of the project:__ Create an SPA (Single Page Application) of a rental apartment web application named Kasa.
 Provided to us a [figma's model](https://www.figma.com/file/bAnXDNqRKCRRP8mY2gcb5p/UI-Design-Kasa-FR?node-id=3%3A0) and contraints to follow.
+
+As we can see in the Figma model we have 4 pages: :thinking:
+* Home
+* Appartement
+* About
+* Error: could be in the layout as a component with Banner component.
 
  |**Lists of Constraints**|
  | :--------|
