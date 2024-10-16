@@ -1,5 +1,7 @@
 
-# ![React](src\assets\images\logo\React_logo.png) Project 7 Kasa create a web application with React.
+# ![alt text](React_logo.png) Project 7 Kasa create a web application with React.
+
+
 
 ## Introduction
 
