@@ -47,19 +47,19 @@ As we can see in the Figma model we have 4 pages:
   git clone "https://github.com/Deltaquarides/Kasa.git"
 ```
 
-[2] To install this project.
+[2] To install this project:
 ```bash
   npm install
 ```
 
-[3] To start this project run
+[3] To start this project run:
 
 ```bash
   npm start
 ```
-[4] **Styling**, if you want to use styled-components install
+[4] **Styling**, if you want to use styled-components:
 ```bash
-  install styled-components
+  npm install styled-components
 ```
 
 You are good to go! :man_technologist:
