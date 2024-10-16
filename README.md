@@ -17,26 +17,23 @@ Provided to us a [figma's model](https://www.figma.com/file/bAnXDNqRKCRRP8mY2gcb
   Implement a redirect to a custom 404 page using react router dom.
   No error in the console should appear.|
 
-## Building tools :grinning:
+  > [!TIP]
+> add a key to each child as well as each element inside children when using the map() function.
+
+## :hammer_and_wrench: Building tools 
 
 
 - Create React App
+- JSX
+- EsLint: 
+- Prettier
 - React Router
 - Styling: CSS in JS
 - **No external library**
 
 > [!WARNING]
-> Urgent info that needs immediate user attention to avoid problems.
-
-´´´Deprecated´´´ 
+> Create React App is Deprecated use Vite instead.
 
 
-```diff
-- text in red
-+ text in green
-! text in orange
-# text in gray
-@@ text in purple (and bold)@@
-```
-> [!IMPORTANT]
-> Crucial information necessary for users to succeed.
+
+
