@@ -1,5 +1,5 @@
 
-# Project 7 Kasa create a web application with React.
+# [Project 7 Kasa create a web application with React.](\src\assets\images\logo\React_logo.png)
 
 ## Introduction
 
@@ -21,7 +21,6 @@ Provided to us a [figma's model](https://www.figma.com/file/bAnXDNqRKCRRP8mY2gcb
 > add a key to each child as well as each element inside children when using the map() function.
 
 ## :hammer_and_wrench: Building tools 
-
 
 - Create React App
 - JSX
