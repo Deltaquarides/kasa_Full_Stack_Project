@@ -12,7 +12,7 @@ export const HostCreateApt = () => {
   const jwtToken = localStorage.getItem("jwtToken"); // Retreive the token from localStorage before making the fetch request
   const [formData, setFormData] = useState(null); // used to trigger fetch
 
-  //hook useMemo
+  //hook useMemo to store: method, headers, and body, useMemo ensure reference is stable across renders.
   const options = useMemo(() => {
     if (!formData) return null;
     return {
@@ -30,6 +30,16 @@ export const HostCreateApt = () => {
     options
   );
 
+  /*
+  handleCreate function is the form submission handler.
+  It takes dataToSend (the form data "formData", created inside the HostAptForm).
+  setFormData(dataToSend) stores this form data into the state.
+  Since the options object in the useMemo hook depends on formData, setting formData 
+  triggers a re-calculation of options and the fetch request is made via useFetch with the updated options.
+  The role of handleCreate is to prepare and set the form data in state, which will trigger the fetch request 
+  due to the useMemo dependency on formData. This separation allows to control when the fetch request 
+  should occur, only after submitting the form data.
+  */
   const handleCreate = (dataToSend) => {
     setFormData(dataToSend); // triggers the fetch via useMemo + useFetch
   };
