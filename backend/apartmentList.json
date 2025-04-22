@@ -1,0 +1,115 @@
+[
+  {
+    "id": "id_0fssexcm8a13lw2",
+    "title": "Appartement cosy",
+    "description": " Votre maison loin de chez vous. Que vous veniez de l'autre bout du monde, ou juste de quelques stations de RER, vous vous sentirez chez vous dans notre appartement.",
+    "tags": [
+      "Batignolle",
+      "Montmartre"
+    ],
+    "location": "Ile de France - Paris 17e",
+    "selectedItems": [
+      "Équipements de base",
+      "Micro-Ondes",
+      "Douche italienne",
+      "Frigo",
+      "WIFI"
+    ],
+    "picture": "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/profile-picture-12.jpg",
+    "cover": "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-1-1.jpg",
+    "selectedImages": [
+      "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-20-1.jpg",
+      "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-20-2.jpg",
+      "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-20-3.jpg",
+      "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-20-4.jpg",
+      "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-20-5.jpg"
+    ],
+    "createdAt": "2025-03-15T09:52:58.514Z",
+    "createdBy": {
+      "userId": "67d05d208c221ac04fe2ccf5",
+      "userName": "Nathalie Jean"
+    },
+    "voteCount": 1,
+    "voters": [
+      {
+        "userId": "67d554aabc797b6f3f741460",
+        "vote": 4
+      }
+    ],
+    "averageVote": 4
+  },
+  {
+    "id": "id_jlyqa2lm9bkfo53",
+    "title": "wfdsvdsv",
+    "description": "dsvsdvsdvdsv",
+    "location": "cxvxcvxcv",
+    "tags": [
+      "popo",
+      "momo",
+      "ssos"
+    ],
+    "selectedItems": [],
+    "picture": "http://localhost:8080/images/React_logo.png1744302102075.png",
+    "cover": "http://localhost:8080/images/1174949_js_react_js_logo_react_react_native_icon.png1744302102077.png",
+    "selectedImages": [
+      "http://localhost:8080/images/React_logo.png1744302102278.png",
+      "http://localhost:8080/images/1174949_js_react_js_logo_react_react_native_icon.png1744302102278.png"
+    ],
+    "createdAt": "2025-04-10T16:21:42.519Z",
+    "createdBy": {
+      "userId": "67e54b5e0b9af5623082299d",
+      "userName": "collection9"
+    }
+  },
+  {
+    "id": "id_3cpj0y3m9imb5k4",
+    "title": "tutululu",
+    "description": "tululul",
+    "location": "efffefe",
+    "tags": [
+      "sdfdsfsf"
+    ],
+    "selectedItems": [
+      "Lit King Size",
+      "Chambre Séparée"
+    ],
+    "picture": "http://localhost:8080/images/spelunky_shop.png1744728514172.png",
+    "cover": "http://localhost:8080/images/spelunky_shop.png1744728514174.png",
+    "selectedImages": [
+      "http://localhost:8080/images/spelunky_shop.png1744728514175.png",
+      "http://localhost:8080/images/dance-ezgif.com-gif-to-sprite-converter.png1744728514176.png"
+    ],
+    "createdAt": "2025-04-15T14:48:34.276Z",
+    "createdBy": {
+      "userId": "67e54b5e0b9af5623082299d",
+      "userName": "collection9"
+    }
+  },
+  {
+    "id": "id_ehsqbkfm9lbo0jr",
+    "title": "papaoutai",
+    "description": "mamaoutai",
+    "location": "Stromae",
+    "tags": [
+      "glop",
+      "glop",
+      "pas",
+      "glop"
+    ],
+    "selectedItems": [
+      "Lit King Size",
+      "lit Double standard"
+    ],
+    "picture": "http://localhost:8080/images/spelunky_shop.png1744892015190.png",
+    "cover": "http://localhost:8080/images/New_Piskel_(3).png1744892015197.png",
+    "selectedImages": [
+      "http://localhost:8080/images/dance-ezgif.com-gif-to-sprite-converter.png1744892015198.png",
+      "http://localhost:8080/images/spelunky_shop.png1744892036987.png"
+    ],
+    "createdAt": "2025-04-17T12:13:57.063Z",
+    "createdBy": {
+      "userId": "67e54b5e0b9af5623082299d",
+      "userName": "collection9"
+    }
+  }
+]
