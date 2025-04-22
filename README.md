@@ -4,13 +4,13 @@
 ## Introduction :monocle_face:
 
  __Aim of the project:__ Create an SPA (Single Page Application) of a rental apartment web application named Kasa.
-Provided to us a [figma's model](https://www.figma.com/file/bAnXDNqRKCRRP8mY2gcb5p/UI-Design-Kasa-FR?node-id=3%3A0) and contraints to follow.
+Provided to us a [figma's model](https://www.figma.com/file/bAnXDNqRKCRRP8mY2gcb5p/UI-Design-Kasa-FR?node-id=3%3A0) and constraints to follow.
 
 As we can see in the Figma model we have 4 pages: 
 * Home
 * Appartement
 * About
-* Error: could be in the layout as a component with Banner component. :thinking:
+* Error could be in the layout as a component with Banner component. :thinking:
 
  |**Lists of Constraints**|
  | :--------|
