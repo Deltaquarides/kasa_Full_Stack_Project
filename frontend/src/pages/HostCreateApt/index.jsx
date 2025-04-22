@@ -7,6 +7,7 @@ collection9POI+
 import { useMemo, useState } from "react";
 import { useFetch } from "../../utils/hook";
 import { HostAptForm } from "../../components/HostAptForm";
+import { LoaderSpinner } from "../../components/LoaderSpinner";
 
 export const HostCreateApt = () => {
   const jwtToken = localStorage.getItem("jwtToken"); // Retreive the token from localStorage before making the fetch request
@@ -58,8 +59,9 @@ export const HostCreateApt = () => {
         submitButtonText="Create"
         titleForm="Mettez à louer votre logement"
       />
+
       {/*  feedback from fetch */}
-      {isLoading && <p>Envoi en cours...</p>}
+      {isLoading && <LoaderSpinner />}
       {error && <p style={{ color: "red" }}>Erreur : {error}</p>}
       {data && <p>Réponse du serveur : {JSON.stringify(data)}</p>}
     </main>
