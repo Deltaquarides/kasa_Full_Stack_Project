@@ -1,5 +1,5 @@
 
-# <img src="src/assets/images/logo/React_logo.png" width="50" height="50" /> Project 7 Kasa create a web application with React.
+# <img src="frontend\src\assets\images\logo\React_logo.png" width="50" height="50" /> Project 7 Kasa create a web application with React.
 
 ## Introduction :monocle_face:
 
