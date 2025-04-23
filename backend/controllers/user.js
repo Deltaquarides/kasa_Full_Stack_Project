@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
+const { secretToken } = require("./config"); //  import from config
 
 console.table(jwt);
 
@@ -32,9 +33,22 @@ exports.register = (req, res, next) => {
             .json({ message: `${userClient.role} created:`, userClient });
         })
         .catch((err) => {
-          res
-            .status(400)
-            .json({ message: "Validation failed", error: err.message });
+          // Duplicate key error
+          if (err.code === 11000) {
+            const duplicatedField = Object.keys(err.keyValue)[0];
+            return res.status(400).json({
+              error: `${duplicatedField} already exists.`,
+            });
+          }
+
+          // Mongoose validation errors (regex, required, etc.)
+          if (err.name === "ValidationError") {
+            return res.status(400).json({ error: err.message });
+          }
+
+          // Unexpected server errors
+          console.error(err);
+          res.status(500).json({ error: "Server error" });
         });
     })
     .catch((err) => res.status(500).json({ err }));
@@ -64,7 +78,7 @@ exports.signin = (req, res, next) => {
             role: user.role,
             token: jwt.sign(
               { userId: user._id, userName: user.name, role: user.role }, //add user.role to the token
-              "RANDOM_TOKEN_SECRET",
+              secretToken,
               {
                 expiresIn: "1h",
               }

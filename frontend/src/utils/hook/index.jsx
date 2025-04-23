@@ -66,3 +66,30 @@ export const useFetch = (url, options) => {
   }, [url, options]);
   return { isLoading, data, error };
 };
+
+/*
+// components/PostForm.js
+import React, { useMemo } from "react";
+import { useFetch } from "../hooks/useFetch";
+
+const PostForm = ({ dataToPost }) => {
+  // Mémoriser les options pour que le hook ne relance pas le fetch inutilement
+  const options = useMemo(() => ({
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(dataToPost)
+  }), [dataToPost]);
+
+  const { data, error, isLoading } = useFetch("/api/post", options);
+
+  return (
+    <div>
+      {isLoading && <p>Envoi en cours...</p>}
+      {error && <p style={{ color: "red" }}>Erreur : {error}</p>}
+      {data && <p>Réponse : {JSON.stringify(data)}</p>}
+    </div>
+  );
+};
+
+export default PostForm;
+*/

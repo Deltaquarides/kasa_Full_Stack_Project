@@ -6,6 +6,7 @@ const hostRoutes = require("./routes/host");
 const likeRoutes = require("./routes/user");
 const mongoose = require("mongoose");
 const path = require("path");
+const { port, mongoURI } = require("./config"); //  import from config
 //---------------------------CORS----------------------------------//
 
 app.use((req, res, next) => {
@@ -39,12 +40,9 @@ app.use("/images", express.static(path.join(__dirname, "images")));
 //--------------------------Mongoose-------------------------------------//
 
 mongoose
-  .connect(
-    "mongodb+srv://wajahatsyed:XGUTS786@kasa.p82mb.mongodb.net/?retryWrites=true&w=majority&appName=KASA",
-    {
-      useUnifiedTopology: true,
-    }
-  )
+  .connect(mongoURI, {
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("MongoDb connected !"))
   .catch((e) => console.log("MongoDB ERROR !", e.errmsg));
 
@@ -54,8 +52,7 @@ app.use("/api/auth", userRoutes);
 app.use("/api", hostRoutes); // Ensure protected routes are under this path
 app.use("/api/logement/", likeRoutes);
 //--------------------------Server-------------------------------------//
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
+app.listen(port, () => {
   console.log(`listening on server http://localhost: ${PORT}`);
 });
 

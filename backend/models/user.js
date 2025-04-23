@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const uniqueValidator = require("mongoose-unique-validator");
+//const uniqueValidator = require("mongoose-unique-validator");
 
 const userSchema = mongoose.Schema({
   name: {
@@ -41,7 +41,10 @@ const userSchema = mongoose.Schema({
   },
 });
 
-userSchema.plugin(uniqueValidator, { type: "mongoose-unique-validator" });
+// Remove the plugin, no longer needed: since we don't use mongoose-unique validator
+//due to conflict version of mongoose "^8.7.2",
+//mongoose-unique-validator didn't catch up yet, stil in  4.0.1 version.
+//userSchema.plugin(uniqueValidator, { type: "mongoose-unique-validator" });
 
 //use of  Mongoose's pre save hook to automatically trim the fields and transform email to lowercase before they are saved to the database.
 userSchema.pre("save", function (next) {
