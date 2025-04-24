@@ -1,0 +1,15 @@
+
+
+    version: 2
+updates:
+  # For frontend ( `frontend/package.json` )
+  - package-ecosystem: "npm"
+    directory: "/frontend"  # The frontend folder
+    schedule:
+      interval: "weekly"
+
+  # For backend ( `backend/package.json` )
+  - package-ecosystem: "npm"
+    directory: "/backend"  # The backend folder
+    schedule:
+      interval: "weekly"
