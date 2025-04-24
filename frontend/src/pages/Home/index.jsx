@@ -1,8 +1,10 @@
 import homeBanner from "../../assets/images/homeBanner.png";
-import { useState, useEffect } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Gallery } from "../../components/Gallery";
 import { Banner } from "../../components/Banner";
 import styled from "styled-components";
+import { useFetch } from "../../utils/hook";
+import { LoaderSpinner } from "../../components/LoaderSpinner";
 
 const MainStyl = styled.main`
   margin-left: 40px;
@@ -16,39 +18,31 @@ const MainStyl = styled.main`
 export const Home = () => {
   const url = `http://localhost:8080/api/home`;
 
+  // Memoize the fetch request options if needed (for customization)
+  const options = useMemo(() => ({ method: "GET" }), []);
+
+  // Use the custom useFetch hook to fetch data
+  const { data, error, isLoading } = useFetch(url, options);
+
+  // State to hold the apartment list after the data is fetched
   const [items, setItems] = useState([]);
-  const [error, setError] = useState(null);
-  // Here we are using the error state to handle differents errors
-  // it's a different approch to "throw Error" we used in Register for ex.
+
+  // State to handle any additional errors in the component (not related to fetch)
+  const [isError, setIsError] = useState(null);
+
+  // Effect hook to handle data processing after the fetch
   useEffect(() => {
-    fetch(url)
-      .then((res) => {
-        // if response is !ok handle error
-        if (!res.ok) {
-          console.error("Network response problem!", res);
-          setError("Failed to fetch apartments");
-          return null; // Prevent further processing if the response is not ok
-        }
-        return res.json();
-      })
-      .then((data) => {
-        console.log(data);
-        // response of the back end (message,apartmentList).
-        if (data.message && data.apartmentList) {
-          setItems(data.apartmentList);
-        } else {
-          // handle error if the response structure is not as expected
-          setError(
-            "Invalid response format: apartmentList missing or malformed"
-          );
-        }
-      })
-      .catch((err) => {
-        // Handle any error that occurs during the fetch or data processing
-        console.error("Error fetching apartment data:", err);
-        setError("An error occurred while fetching apartment data");
-      });
-  }, []);
+    if (data) {
+      // Check if the response structure is valid
+      if (data.message && Array.isArray(data.apartmentList)) {
+        setItems(data.apartmentList); // Update the apartment list
+      } else {
+        setIsError(
+          "Invalid response format: apartmentList missing or malformed"
+        );
+      }
+    }
+  }, [data]);
 
   return (
     <MainStyl>
@@ -57,8 +51,15 @@ export const Home = () => {
         title="Chez vous, partout ailleurs"
         height="250px"
       />
+      {/* Conditional rendering based on loading or error states */}
+      {isLoading && (
+        <p>
+          <LoaderSpinner />
+        </p>
+      )}
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <Gallery
-        error={error}
+        error={isError}
         items={items}
         titleField="title"
         coverField="cover"
