@@ -53,7 +53,7 @@ app.use("/api", hostRoutes); // Ensure protected routes are under this path
 app.use("/api/logement/", likeRoutes);
 //--------------------------Server-------------------------------------//
 app.listen(port, () => {
-  console.log(`listening on server http://localhost: ${PORT}`);
+  console.log(`listening on server http://localhost: ${port}`);
 });
 
 //module.exports = app;
