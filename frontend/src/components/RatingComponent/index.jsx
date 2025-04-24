@@ -14,12 +14,14 @@
 // 1. Create a function named "postRating" that handle the post request
 // 2. postRating have as prop rating value, this function will be call in the onClick event
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { useFetch } from "../../utils/hook";
+import { LoaderSpinner } from "../LoaderSpinner";
 
 const Star = styled(FontAwesomeIcon)`
   cursor: pointer;
@@ -33,26 +35,23 @@ export const RatingComponent = () => {
   const [rating, setRating] = useState(null);
   const [hoverRating, setHoverRating] = useState(null); // For hover effect
 
-  const postRating = (ratingValue) => {
-    fetch(url, {
+  // Memoize the fetch options to avoid unnecessary re-renders
+  const options = useMemo(() => {
+    return {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ ratingValue }), // Send the rating value as JSON
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to submit rating");
-        }
-        return response.json();
-      })
-      .then((result) => {
-        console.log("Response Data:", result);
-      })
-      .catch((err) => {
-        console.log(`Error submitting rating: ${err.message}`);
-      });
+      body: JSON.stringify({ ratingValue: rating }), // Send the rating value as JSON
+    };
+  }, [rating]); // This will update whenever the rating value changes
+
+  // Use the custom useFetch hook for posting the rating
+  const { data, error, isLoading } = useFetch(url, options);
+
+  // Handle the click event to set the rating and trigger the fetch
+  const handleRatingClick = (ratingValue) => {
+    setRating(ratingValue); // Set the rating when clicked
   };
 
   return (
@@ -68,10 +67,7 @@ export const RatingComponent = () => {
               type="radio"
               name="rating"
               value={ratingValue}
-              onClick={() => {
-                setRating(ratingValue);
-                postRating(ratingValue);
-              }}
+              onClick={() => handleRatingClick(ratingValue)} // Set rating on click
               style={{ display: "none" }}
             />
 
@@ -89,6 +85,13 @@ export const RatingComponent = () => {
         );
       })}
       <span>{rating}</span>
+      {isLoading && (
+        <p>
+          <LoaderSpinner />
+        </p>
+      )}
+      {error && <p style={{ color: "red" }}>Error: {error}</p>}
+      {data && <p>Response: {JSON.stringify(data)}</p>}
     </>
   );
 };
