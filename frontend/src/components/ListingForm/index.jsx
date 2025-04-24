@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 export const ListingForm = ({
-  options,
+  options, // take list of checkboxes that manage the local state selectedOptions
   selectedValues = [],
-  onChange,
+  onChange, // options sync with parent using onChange
   labelField = "label",
   valueField = "value",
   placeholder = "Select options",
