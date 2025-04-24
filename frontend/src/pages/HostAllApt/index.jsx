@@ -1,54 +1,32 @@
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
+import { useFetch } from "../../utils/hook";
 import { Gallery } from "../../components/Gallery";
+import { LoaderSpinner } from "../../components/LoaderSpinner";
 
 export const HostAllApt = () => {
-  const [selectData, setSelectData] = useState(null);
-  const [error, setError] = useState(null);
-
+  const jwtToken = localStorage.getItem("jwtToken"); // Retreive the token from localStorage before making the fetch request
   const url = `http://localhost:8080/api/host-only/read`;
 
-  useEffect(() => {
-    const jwtToken = localStorage.getItem("jwtToken"); // Retreive the token from localStorage before making the fetch request
-
-    fetch(url, {
-      method: "GET",
+  //---------------- GET REQUEST--------------------//
+  //hook useMemo to store: method, headers, and body, useMemo ensure reference is stable across renders.
+  const options = useMemo(() => {
+    return {
       headers: {
         Authorization: jwtToken ? `Bearer ${jwtToken}` : "", // Replace with the actual token or credentials
-        "Content-Type": "application/json", // If required by the API
       },
-    })
-      .then((res) => {
-        if (!res.ok) {
-          console.error("Network response problem!", res);
-          setError("Failed to fetch data");
-          return; // Simply return without proceeding further
-        }
-        return res.json();
-      })
-      .then((data) => {
-        console.log("Fetched Data: ", data); // Add this line to inspect the response
-        if (data && data.apartment) {
-          // Set the data if apartmentList exists
-          setSelectData(data.apartment);
-          console.log(data.apartment);
-        } else {
-          setError(
-            "Invalid response format: apartmentList missing or malformed"
-          );
-        }
-      })
-      .catch((err) => {
-        // Handle any error that occurs during the fetch or data processing
-        console.error("Error fetching apartment data:", err);
-        setError("An error occurred while fetching apartment data");
-      });
-  }, []);
+    };
+  }, [jwtToken]);
+
+  const { data, error, isLoading } = useFetch(url, options);
 
   return (
     <>
+      {isLoading && <LoaderSpinner />}
+      {error && <p style={{ color: "red" }}>Erreur : {error}</p>}
+
       <Gallery
         error={error}
-        items={selectData}
+        items={data}
         titleField="title"
         coverField="cover"
         linkPath="/host-only/modify-apartment/:id"

@@ -1,6 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { HostAptForm } from "../../components/HostAptForm";
+import { useFetch } from "../../utils/hook";
+import { LoaderSpinner } from "../../components/LoaderSpinner";
 
 export const HostModifyApt = () => {
   // Method use for fetch is PUT to modify.
@@ -10,50 +12,54 @@ export const HostModifyApt = () => {
 
   const { id } = useParams();
   const jwtToken = localStorage.getItem("jwtToken"); // Retreive the token from localStorage before making the fetch request
-  const [apartment, setApartment] = useState(null); // holds pre-filled form data
-  const [loading, setLoading] = useState(true);
+  // Have all of the form data inside due to handleUpdate who is the form submission handler.
+  // Used to trigger fetch
+  const [formData, setFormData] = useState(null);
 
-  useEffect(() => {
-    fetch(`http://localhost:8080/api/host-only/${id}`, {
+  //---------------- GET REQUEST--------------------//
+  //hook useMemo to store: method, headers, and body, useMemo ensure reference is stable across renders.
+  const options = useMemo(() => {
+    return {
       headers: {
-        Authorization: jwtToken ? `Bearer ${jwtToken}` : "",
+        Authorization: jwtToken ? `Bearer ${jwtToken}` : "", // Replace with the actual token or credentials
       },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setApartment(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Failed to load apartment:", err);
-        setLoading(false);
-      });
-  }, [id, jwtToken]);
+    };
+  }, [jwtToken]);
 
-  const handleUpdate = (formData) => {
-    fetch(`http://localhost:8080/api/host-only/${id}`, {
+  const { data, error, isLoading } = useFetch(
+    `http://localhost:8080/api/host-only/${id}`,
+    options
+  );
+
+  //---------------- POST REQUEST--------------------//
+
+  const putOptions = useMemo(() => {
+    if (!formData) return null;
+    return {
       method: "PUT",
       headers: {
         Authorization: jwtToken ? `Bearer ${jwtToken}` : "", // Replace with the actual token or credentials
       },
       body: formData,
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(" Network response pb!");
-        }
-        return response.json();
-      })
-      .then((result) => {
-        console.log(`form added:`, JSON.stringify(result, null, 2));
-      })
-      .catch((err) => {
-        console.log(`Error: ${err.message}`);
-      });
+    };
+  }, [formData, jwtToken]);
+
+  //self explanatory to changes those const to avoid duplicate.
+  const {
+    data: updateResponse,
+    error: putError,
+    isLoading: putLoading,
+  } = useFetch(`http://localhost:8080/api/host-only/${id}`, putOptions);
+
+  // 🔘 Form submission handler
+  const handleUpdate = (dataToSend) => {
+    setFormData(dataToSend); // triggers PUT via useMemo + useFetch
   };
 
-  if (loading) return <p>Loading...</p>;
+  //-------------------------------- END ---------------------------//
 
+  if (isLoading) return <LoaderSpinner />;
+  if (error) return <p style={{ color: "red" }}>Erreur chargement: {error}</p>;
   return (
     <main
       style={{
@@ -65,11 +71,17 @@ export const HostModifyApt = () => {
     >
       {" "}
       <HostAptForm
-        initialData={apartment} //  pre-fill form
+        initialData={data} //  pre-fill form
         onSubmit={handleUpdate} //modify handler
         submitButtonText="Update Apartment"
         titleForm=" Effectuer les modifications nécessaires"
       />
+      {/* 👇 PUT fetch result after form submission */}
+      {putLoading && <LoaderSpinner />}
+      {putError && (
+        <p style={{ color: "red" }}>Erreur mise à jour : {putError}</p>
+      )}
+      {updateResponse && <p>Réponse : {JSON.stringify(updateResponse)}</p>}
     </main>
   );
 };

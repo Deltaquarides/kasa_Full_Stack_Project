@@ -11,7 +11,10 @@ import { LoaderSpinner } from "../../components/LoaderSpinner";
 
 export const HostCreateApt = () => {
   const jwtToken = localStorage.getItem("jwtToken"); // Retreive the token from localStorage before making the fetch request
-  const [formData, setFormData] = useState(null); // used to trigger fetch
+  // used to trigger fetch
+  // Have all of the form data inside due to
+  //  handleUpdate who is the form submission handler.
+  const [formData, setFormData] = useState(null);
 
   //hook useMemo to store: method, headers, and body, useMemo ensure reference is stable across renders.
   const options = useMemo(() => {
