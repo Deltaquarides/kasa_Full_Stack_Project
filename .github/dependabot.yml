@@ -1,30 +1,24 @@
 version: 2
 
 updates:
-  # Frontend dependencies
   - package-ecosystem: "npm"
-    directory: "/frontend" # The frontend folder
+    directory: "/frontend"
     schedule:
       interval: "weekly"
     registries:
-      npm:
-        type: "npm-registry"
-        url: "https://registry.npmjs.org" # Public npm registry,  No need to match the URL to anything,it's just a static value.
-        token: "${{secrets.MY_NPM_TOKEN}}" # Use the NPM_TOKEN secret for private npm access in github/Dependabot secrets
+      - npm  # ← refers to the name defined in the global `registries` section
 
-  # Backend dependencies
   - package-ecosystem: "npm"
-    directory: "/backend" # The backend folder
+    directory: "/backend"
     schedule:
       interval: "weekly"
     registries:
-      npm:
-        type: "npm-registry"
-        url: "https://registry.npmjs.org"
-        token: "${{secrets.MY_NPM_TOKEN}}"
+      - npm  # ← also refers to the shared config below
 
 registries:
   npm:
     type: "npm-registry"
-    url: "https://registry.npmjs.org"
-    token: "${{secrets.MY_NPM_TOKEN}}"
+    url: "https://registry.npmjs.org" #static url, don't need to change or match since it's public
+    token: "${{secrets.MY_NPM_TOKEN}}" #token name that matches depenabot secrets
+    
+    
