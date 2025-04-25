@@ -10,7 +10,7 @@
   "author": "DeltaQuarides",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^3.1.7"
+    "nodemon": "^3.1.10"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
