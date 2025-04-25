@@ -19,6 +19,6 @@ registries:
   npm:
     type: "npm-registry"
     url: "https://registry.npmjs.org" #static url, don't need to change or match since it's public
-    token: "${{secrets.MY_NPM_TOKEN}}" #token name that matches depenabot secrets
+    token: "${{secrets.NPM_TOKEN_NAME}}" #token name that matches depenabot secrets
     
     
