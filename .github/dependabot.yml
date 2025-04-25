@@ -7,6 +7,7 @@ updates:
       interval: "weekly"
     registries:
       - npm  # ← refers to the name defined in the global `registries` section
+    open-pull-requests-limit: 10  # 👈 raise the PR limit
 
   - package-ecosystem: "npm"
     directory: "/backend"
