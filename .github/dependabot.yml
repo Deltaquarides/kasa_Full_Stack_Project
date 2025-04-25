@@ -1,15 +1,30 @@
+version: 2
 
-
-    version: 2
 updates:
-  # For frontend ( `frontend/package.json` )
+  # Frontend dependencies
   - package-ecosystem: "npm"
-    directory: "/frontend"  # The frontend folder
+    directory: "/frontend" # The frontend folder
     schedule:
       interval: "weekly"
+    registries:
+      npm:
+        type: "npm-registry"
+        url: "https://registry.npmjs.org" # Public npm registry,  No need to match the URL to anything,it's just a static value.
+        token: "${{secrets.MY_NPM_TOKEN}}" # Use the NPM_TOKEN secret for private npm access in github/Dependabot secrets
 
-  # For backend ( `backend/package.json` )
+  # Backend dependencies
   - package-ecosystem: "npm"
-    directory: "/backend"  # The backend folder
+    directory: "/backend" # The backend folder
     schedule:
       interval: "weekly"
+    registries:
+      npm:
+        type: "npm-registry"
+        url: "https://registry.npmjs.org"
+        token: "${{secrets.MY_NPM_TOKEN}}"
+
+registries:
+  npm:
+    type: "npm-registry"
+    url: "https://registry.npmjs.org"
+    token: "${{secrets.MY_NPM_TOKEN}}"
